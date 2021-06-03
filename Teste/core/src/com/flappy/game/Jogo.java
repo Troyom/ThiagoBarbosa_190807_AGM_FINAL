@@ -27,7 +27,7 @@ public class Jogo extends ApplicationAdapter {
 	private float larguraDispositivo;
 	private float alturaDispositivo;
 
-
+	//Ajusta a gravidade
 	private int gravidade = 0;
 	private int pontos=0;
 	private int pontuacaoMaxima=0;
