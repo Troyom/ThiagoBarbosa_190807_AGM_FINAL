@@ -28,6 +28,10 @@ public class formularioPersonagem extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoAltura;
     private EditText campoNascimento;
+    private EditText campoRG;
+    private EditText campoCEP;
+    private EditText campoGenero;
+    private EditText campoPhone;
     private final PersonagemDAO dao= new PersonagemDAO();
     private Personagem personagem;
 
@@ -89,6 +93,10 @@ public class formularioPersonagem extends AppCompatActivity {
         campoNome= findViewById(R.id.editText_nome);
         campoAltura= findViewById(R.id.editText_altura);
         campoNascimento= findViewById(R.id.editText_nascimento);
+        campoRG=findViewById(R.id.editTextRG);
+        campoCEP=findViewById(R.id.editTextCEP);
+        campoGenero=findViewById(R.id.editTextGenero);
+        campoPhone=findViewById(R.id.editTextPhone);
 
         SimpleMaskFormatter smfAltura=new SimpleMaskFormatter("N,NN");
         MaskTextWatcher mtwAltura=new MaskTextWatcher(campoAltura, smfAltura);
@@ -97,6 +105,18 @@ public class formularioPersonagem extends AppCompatActivity {
         SimpleMaskFormatter smfNascimento=new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher mtwNascimento=new MaskTextWatcher(campoNascimento, smfNascimento);
         campoAltura.addTextChangedListener(mtwNascimento);
+
+        SimpleMaskFormatter smfRG =new SimpleMaskFormatter("NN.NNN.NNN-N");
+        MaskTextWatcher mtwRG =new MaskTextWatcher(campoRG, smfRG);
+        campoRG.addTextChangedListener(mtwRG);
+
+        SimpleMaskFormatter smfCEP=new SimpleMaskFormatter("NNNNN-NNN");
+        MaskTextWatcher mtwCEP=new MaskTextWatcher(campoCEP, smfCEP);
+        campoCEP.addTextChangedListener(mtwCEP);
+
+        SimpleMaskFormatter smfPhone=new SimpleMaskFormatter("NN-NNNNNNNNN");
+        MaskTextWatcher mtwPhone=new MaskTextWatcher(campoPhone, smfPhone);
+        campoPhone.addTextChangedListener(mtwPhone);
     }
 
     private void carregaPersonagem() {
@@ -117,6 +137,10 @@ public class formularioPersonagem extends AppCompatActivity {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
+        campoRG.setText(personagem.getRg());
+        campoCEP.setText(personagem.getCep());
+        campoGenero.setText(personagem.getGenero());
+        campoPhone.setText(personagem.getPhone());
     }
 
     private void preencherPersonagem(){
@@ -124,11 +148,19 @@ public class formularioPersonagem extends AppCompatActivity {
         //Convertendo os dados
         String nome=campoNome.getText().toString();
         String altura=campoAltura.getText().toString();
+        String rg=campoRG.getText().toString();
+        String cep=campoCEP.getText().toString();
+        String genero=campoGenero.getText().toString();
+        String phone=campoPhone.getText().toString();
         String nascimento=campoNascimento.getText().toString();
 
         personagem.setNome(nome);
         personagem.setAltura(altura);
         personagem.setNascimento(nascimento);
+        personagem.setRg(rg);
+        personagem.setCep(cep);
+        personagem.setGenero(genero);
+        personagem.setPhone(phone);
 
     }
 }
